@@ -23,18 +23,19 @@ def evaluaMochila(pesObj, com):
     for i in com:
         s+=pesObj[i]
     return s
-
 def generaVecino(solucion, objetos):
     vecino=solucion[:]
-    i=random.randint(0, len(solucion) - 1)
-    j=random.choice([x for x in objetos if x not in solucion])
-    vecino[i]=j
+    i=random.randint(0, len(solucion)-1)
+    aux=[x for x in objetos if x not in solucion]
+    if (aux):
+        j=random.choice(aux)
+        vecino[i]=j
     return vecino
-def acepta(sol_actual, sol_vecina, temp):
-    if (sol_vecina<sol_actual):
+def mejoraSolucion(sol, solVecina, te):
+    if (solVecina<sol):
         return True
     else:
-        prob=np.exp((sol_actual-sol_vecina)/temp)
+        prob=np.exp((sol-solVecina)/te)
         return random.random()<prob
 def recocidoSimulado(lim, pesos, objetos, te, re, n):
     sol=random.sample(objetos, len(objetos))
@@ -49,7 +50,7 @@ def recocidoSimulado(lim, pesos, objetos, te, re, n):
             pesoVecino=evaluaMochila(pesos, vecino)
             if (pesoVecino<=lim):
                 distVecina=evaluaDistancia(vecino)
-                if (acepta(dist, distVecina, te)):
+                if (mejoraSolucion(dist, distVecina, te)):
                     sol=vecino[:]
                     peso=pesoVecino
                     dist=distVecina
