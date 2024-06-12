@@ -1,7 +1,7 @@
 import random
 import numpy as np
 #Vladimir Ariel Lizarro Velásquez
-distancia = np.array([
+distancia=np.array([
     [0, 2, 4, 3, 6, 0, 2],
     [2, 0, 2, 4, 3, 3, 3],
     [4, 2, 0, 4, 7, 3, 3],
@@ -56,9 +56,9 @@ def busqueda(lim, pesos, objetos):
             break
     return comb, peso, dist
 solucion=[1, 2, 3, 4, 5, 6, 0]
-pesoMochila = 15
-objetos = [0, 1, 2, 3, 4, 5, 6]
-pesos = [1, 2, 3, 1, 4, 5, 0]
+pesoMochila=15
+objetos=[0, 1, 2, 3, 4, 5, 6]
+pesos=[1, 2, 3, 1, 4, 5, 0]
 c,p,d=busqueda(pesoMochila, pesos, objetos)
 print("Mejor combinación:", c)
 print("Peso total:", p)
